@@ -1,7 +1,7 @@
 import io
 import os
 import setuptools
-from Cython.Build import cythonize
+# from Cython.Build import cythonize
 
 here = os.path.realpath(os.path.dirname(__file__))
 
@@ -44,7 +44,7 @@ install_requires = ["cython >= 0.29", "numba >= 0.50", "torch >= 1.6.0", "scikit
 ext_modules = [
     setuptools.Extension(
         name="cython_backend",
-        sources=["sigkernel/cython_backend.pyx"],
+        sources=["sigkernel/cython_backend.c"],
         #extra_compile_args=['/openmp'],
         #extra_link_args=['/openmp'],
     )
@@ -64,5 +64,5 @@ setuptools.setup(name=name,
                  zip_safe=False,
                  python_requires=python_requires,
                  install_requires=install_requires,
-                 ext_modules=cythonize(ext_modules),
+                 ext_modules=ext_modules,
                  packages=[name])
